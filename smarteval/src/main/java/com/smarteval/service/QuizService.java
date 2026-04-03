@@ -1,5 +1,6 @@
 package com.smarteval.service;
 
+import com.smarteval.dto.QuizAnalyticsResponse;
 import com.smarteval.dto.QuizRequest;
 import com.smarteval.dto.QuizResponse;
 import com.smarteval.dto.QuizSubmissionRequest;
@@ -14,7 +15,7 @@ public interface QuizService {
     List<QuizResponse> getAllQuizzes();
 
     QuizResponse getQuizById(Long quizId);
-
+    QuizAnalyticsResponse getQuizAnalytics(Long quizId);
     int submitQuiz(QuizSubmissionRequest request, String studentEmail);
 
     // NEW: Result history

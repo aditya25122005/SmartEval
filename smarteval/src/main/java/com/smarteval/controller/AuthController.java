@@ -1,5 +1,6 @@
 package com.smarteval.controller;
 
+import com.smarteval.dto.AuthResponse;
 import com.smarteval.dto.LoginRequest;
 import com.smarteval.dto.RegisterRequest;
 import com.smarteval.service.AuthService;
@@ -23,12 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-
-        String token = authService.login(request);
-
-        return ResponseEntity.ok(
-                java.util.Map.of("token", token)
-        );
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        AuthResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
     }
 }

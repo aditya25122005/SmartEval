@@ -1,9 +1,11 @@
 package com.smarteval.controller;
 
+import com.smarteval.dto.QuizAnalyticsResponse;
 import com.smarteval.dto.QuizRequest;
 import com.smarteval.dto.QuizResponse;
 import com.smarteval.service.QuizService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +29,10 @@ public class FacultyQuizController {
     @GetMapping
     public List<QuizResponse> getAllQuizzes() {
         return quizService.getAllQuizzes();
+    }
+
+    @GetMapping("/{quizId}/stats")
+    public ResponseEntity<QuizAnalyticsResponse> getQuizStats(@PathVariable Long quizId) {
+        return ResponseEntity.ok(quizService.getQuizAnalytics(quizId));
     }
 }

@@ -31,13 +31,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
-        String path = request.getServletPath();
-
-        // 🔥 Allow auth endpoints without JWT
-        if (path.startsWith("/api/auth")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+//        String path = request.getServletPath();
+//
+//        // 🔥 Allow auth endpoints without JWT
+//        if (path.startsWith("/api/auth")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
         final String authHeader = request.getHeader("Authorization");
         System.out.println("Auth Header: " + authHeader);
 

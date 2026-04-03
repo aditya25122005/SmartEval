@@ -1,14 +1,16 @@
 package com.smarteval.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class QuizAttempt {
 
     @Id
@@ -16,14 +18,16 @@ public class QuizAttempt {
     private Long id;
 
     private Long quizId;
-
     private Long studentId;
+    private String quizTitle;
 
-    private int score;
-
+    private int score; // Now stores percentage (e.g., 85)
     private int totalQuestions;
+    private int cheatCount = 0;
 
-    private LocalDateTime startTime;     // NEW
-
+    private LocalDateTime startTime;
     private LocalDateTime submittedAt;
+    private LocalDateTime createdAt;
+
+
 }

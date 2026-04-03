@@ -6,6 +6,7 @@ public class QuizSubmissionRequest {
 
     private Long quizId;
     private List<AnswerRequest> answers;
+    private int cheatCount; // 👈 Variable correct hai
 
     public Long getQuizId() {
         return quizId;
@@ -21,5 +22,13 @@ public class QuizSubmissionRequest {
 
     public void setAnswers(List<AnswerRequest> answers) {
         this.answers = answers;
+    }
+
+    public int getCheatCount() {
+        return cheatCount;
+    }
+
+    public void setCheatCount(int cheatCount) {
+        this.cheatCount = cheatCount;
     }
 }

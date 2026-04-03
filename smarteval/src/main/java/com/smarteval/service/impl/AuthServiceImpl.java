@@ -1,5 +1,6 @@
 package com.smarteval.service.impl;
 
+import com.smarteval.dto.AuthResponse;
 import com.smarteval.dto.LoginRequest;
 import com.smarteval.dto.RegisterRequest;
 import com.smarteval.entity.Role;
@@ -42,8 +43,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(LoginRequest request) {
-        System.out.println("Login email received: '" + request.getEmail() + "'");
+    public AuthResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -51,6 +51,9 @@ public class AuthServiceImpl implements AuthService {
             throw new RuntimeException("Invalid Password");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        // Return BOTH the token and the role name (e.g., "FACULTY" or "STUDENT")
+        return new AuthResponse(token, user.getRole().name());
     }
 }
